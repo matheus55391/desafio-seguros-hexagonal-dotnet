@@ -1,0 +1,36 @@
+@ContratacaoService_HostAddress = http://localhost:5002
+@ContentType = application/json
+
+### Health Check
+GET {{ContratacaoService_HostAddress}}/swagger
+
+### 1. Contratar Proposta
+# IMPORTANTE: A proposta deve estar com status "Aprovada" (2)
+# Substitua {propostaId} por um ID de proposta aprovada do PropostaService
+# @name contratarProposta
+POST {{ContratacaoService_HostAddress}}/api/contratacoes
+Content-Type: {{ContentType}}
+
+{
+  "propostaId": "{propostaId}"
+}
+
+### 2. Listar Todas as Contratações
+GET {{ContratacaoService_HostAddress}}/api/contratacoes
+Accept: {{ContentType}}
+
+### 3. Obter Contratação por ID
+# Substitua {contratacaoId} por um ID válido da resposta acima
+GET {{ContratacaoService_HostAddress}}/api/contratacoes/{contratacaoId}
+Accept: {{ContentType}}
+
+### 4. Tentar Contratar Proposta Não Aprovada (deve falhar)
+# Este endpoint deve retornar erro 400
+POST {{ContratacaoService_HostAddress}}/api/contratacoes
+Content-Type: {{ContentType}}
+
+{
+  "propostaId": "00000000-0000-0000-0000-000000000000"
+}
+
+###

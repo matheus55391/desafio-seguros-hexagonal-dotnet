@@ -1,0 +1,60 @@
+@PropostaService_HostAddress = http://localhost:5001
+@ContentType = application/json
+
+### Health Check
+GET {{PropostaService_HostAddress}}/swagger
+
+### 1. Criar Proposta
+# @name criarProposta
+POST {{PropostaService_HostAddress}}/api/propostas
+Content-Type: {{ContentType}}
+
+{
+  "nomeCliente": "Maria Silva",
+  "cpfCliente": "12345678901",
+  "tipoSeguro": "Residencial",
+  "valorCobertura": 150000,
+  "valorPremio": 350
+}
+
+### 2. Listar Todas as Propostas
+GET {{PropostaService_HostAddress}}/api/propostas
+Accept: {{ContentType}}
+
+### 3. Obter Proposta por ID
+# Substitua {propostaId} por um ID válido da resposta acima
+GET {{PropostaService_HostAddress}}/api/propostas/{propostaId}
+Accept: {{ContentType}}
+
+### 4. Aprovar Proposta (Status EmAnalise → Aprovada)
+# Substitua {propostaId} por um ID válido
+PATCH {{PropostaService_HostAddress}}/api/propostas/{propostaId}/status
+Content-Type: {{ContentType}}
+
+{
+  "novoStatus": 2
+}
+
+### 5. Rejeitar Proposta (Status EmAnalise → Rejeitada)
+# Substitua {propostaId} por um ID válido
+PATCH {{PropostaService_HostAddress}}/api/propostas/{propostaId}/status
+Content-Type: {{ContentType}}
+
+{
+  "novoStatus": 3
+}
+
+### 6. Criar outra Proposta para Testar Fluxo Completo
+# @name criarProposta2
+POST {{PropostaService_HostAddress}}/api/propostas
+Content-Type: {{ContentType}}
+
+{
+  "nomeCliente": "João Santos",
+  "cpfCliente": "98765432100",
+  "tipoSeguro": "Auto",
+  "valorCobertura": 80000,
+  "valorPremio": 200
+}
+
+###

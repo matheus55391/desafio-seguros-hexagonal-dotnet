@@ -1,0 +1,24 @@
+<Solution>
+  <Folder Name="/src/" />
+  <Folder Name="/src/ContratacaoService/">
+    <Project Path="src/ContratacaoService/ContratacaoService.API/ContratacaoService.API.csproj" />
+    <Project Path="src/ContratacaoService/ContratacaoService.Application/ContratacaoService.Application.csproj" />
+    <Project Path="src/ContratacaoService/ContratacaoService.Domain/ContratacaoService.Domain.csproj" />
+    <Project Path="src/ContratacaoService/ContratacaoService.Infra.Data/ContratacaoService.Infra.Data.csproj" />
+    <Project Path="src/ContratacaoService/ContratacaoService.Infra.ExternalServices/ContratacaoService.Infra.ExternalServices.csproj" />
+    <Project Path="src/ContratacaoService/ContratacaoService.Infra.IoC/ContratacaoService.Infra.IoC.csproj" />
+    <Project Path="src/ContratacaoService/ContratacaoService.Infra.Messaging/ContratacaoService.Infra.Messaging.csproj" />
+  </Folder>
+  <Folder Name="/src/PropostaService/">
+    <Project Path="src/PropostaService/PropostaService.API/PropostaService.API.csproj" />
+    <Project Path="src/PropostaService/PropostaService.Application/PropostaService.Application.csproj" />
+    <Project Path="src/PropostaService/PropostaService.Domain/PropostaService.Domain.csproj" />
+    <Project Path="src/PropostaService/PropostaService.Infra.Data/PropostaService.Infra.Data.csproj" />
+    <Project Path="src/PropostaService/PropostaService.Infra.IoC/PropostaService.Infra.IoC.csproj" />
+    <Project Path="src/PropostaService/PropostaService.Infra.Messaging/PropostaService.Infra.Messaging.csproj" />
+  </Folder>
+  <Folder Name="/tests/">
+    <Project Path="tests/ContratacaoService.Tests/ContratacaoService.Tests.csproj" />
+    <Project Path="tests/PropostaService.Tests/PropostaService.Tests.csproj" />
+  </Folder>
+</Solution>
