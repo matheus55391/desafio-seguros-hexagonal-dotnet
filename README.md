@@ -80,44 +80,23 @@ docker compose -f docker-compose.infra.yml down
 # Build
 dotnet build
 
-# Testes unitários (7 testes)
+# Testes unitários (25 testes)
 dotnet test
 ```
 
 ---
 
-## 📝 Testando o Fluxo
+## 📝 Testando os Endpoints
 
-### 1️⃣ Criar Proposta
-```http
-POST http://localhost:5001/api/propostas
-Content-Type: application/json
+Acesse a documentação Swagger interativa:
 
-{
-  "nomeCliente": "Maria Silva",
-  "cpfCliente": "12345678901",
-  "tipoSeguro": "Auto",
-  "valorCobertura": 150000,
-  "valorPremio": 350
-}
-```
+- **PropostaService:** http://localhost:5001/swagger
+- **ContratacaoService:** http://localhost:5002/swagger
 
-### 2️⃣ Aprovar Proposta
-```http
-PATCH http://localhost:5001/api/propostas/{id}/status
-Content-Type: application/json
-
-{ "novoStatus": 2 }
-```
-**Status:** 1=EmAnalise | 2=Aprovada | 3=Rejeitada | 4=Contratada
-
-### 3️⃣ Contratar Proposta
-```http
-POST http://localhost:5002/api/contratacoes
-Content-Type: application/json
-
-{ "propostaId": "{id-da-proposta-aprovada}" }
-```
+**Fluxo básico:**
+1. Criar proposta (POST /api/propostas)
+2. Aprovar proposta (PATCH /api/propostas/{id}/status com `novoStatus: 2`)
+3. Contratar proposta (POST /api/contratacoes)
 
 ---
 
@@ -143,8 +122,8 @@ src/
     └── Infra.IoC/
 
 tests/
-├── PropostaService.Tests/       # 4 testes
-└── ContratacaoService.Tests/    # 3 testes
+├── PropostaService.Tests/       # 19 testes
+└── ContratacaoService.Tests/    # 6 testes
 ```
 
 ---
@@ -170,7 +149,7 @@ tests/
 ✅ DDD  
 ✅ Clean Architecture  
 ✅ SOLID  
-✅ Testes unitários (7 testes)  
+✅ Testes unitários (25 testes)  
 ✅ .NET 10  
 
 ### BONUS
