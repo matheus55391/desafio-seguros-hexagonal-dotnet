@@ -16,10 +16,17 @@ public class Proposta
 
     public Proposta(string nomeCliente, string cpfCliente, string tipoSeguro, decimal valorCobertura, decimal valorPremio)
     {
+        if (string.IsNullOrWhiteSpace(nomeCliente))
+            throw new ArgumentNullException(nameof(nomeCliente));
+        if (string.IsNullOrWhiteSpace(cpfCliente))
+            throw new ArgumentNullException(nameof(cpfCliente));
+        if (string.IsNullOrWhiteSpace(tipoSeguro))
+            throw new ArgumentNullException(nameof(tipoSeguro));
+        
         Id = Guid.NewGuid();
-        NomeCliente = nomeCliente ?? throw new ArgumentNullException(nameof(nomeCliente));
-        CpfCliente = cpfCliente ?? throw new ArgumentNullException(nameof(cpfCliente));
-        TipoSeguro = tipoSeguro ?? throw new ArgumentNullException(nameof(tipoSeguro));
+        NomeCliente = nomeCliente;
+        CpfCliente = cpfCliente;
+        TipoSeguro = tipoSeguro;
         ValorCobertura = valorCobertura > 0 ? valorCobertura : throw new ArgumentException("Valor de cobertura deve ser maior que zero");
         ValorPremio = valorPremio > 0 ? valorPremio : throw new ArgumentException("Valor do premio deve ser maior que zero");
         Status = StatusProposta.EmAnalise;

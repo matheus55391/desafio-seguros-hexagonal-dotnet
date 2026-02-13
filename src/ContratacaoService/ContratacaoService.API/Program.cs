@@ -17,7 +17,6 @@ builder.Services.AddInfrastructure(builder.Configuration);
 
 var app = builder.Build();
 
-// Aplicar migrations automaticamente com logs e retry
 var maxRetries = 5;  
 var retryCount = 0;
 while (retryCount < maxRetries)
@@ -27,14 +26,10 @@ while (retryCount < maxRetries)
         using (var scope = app.Services.CreateScope())
         {
             var logger = scope.ServiceProvider.GetRequiredService<ILogger<Program>>();
-            logger.LogInformation("Tentando aplicar migrations... (tentativa {RetryCount}/{MaxRetries})", retryCount + 1, maxRetries);
-            
             var dbContext = scope.ServiceProvider.GetRequiredService<ContratacaoDbContext>();
             dbContext.Database.Migrate();
-            
-            logger.LogInformation("Migrations aplicadas com sucesso!");
         }
-        break; // Sucesso, sair do loop
+        break;
     }
     catch (Exception ex)
     {

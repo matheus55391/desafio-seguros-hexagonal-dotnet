@@ -2,9 +2,9 @@ namespace ContratacaoService.Domain.Entities;
 
 public class Contratacao
 {
-    public Guid Id { get; private set; }
-    public Guid PropostaId { get; private set; }
-    public DateTime DataContratacao { get; private set; }
+    public Guid Id { get; }
+    public Guid PropostaId { get; }
+    public DateTime DataContratacao { get; }
 
     private Contratacao() { }
 

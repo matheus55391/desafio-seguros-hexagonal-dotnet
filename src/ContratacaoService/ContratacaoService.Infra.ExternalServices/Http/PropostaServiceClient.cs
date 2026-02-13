@@ -27,7 +27,7 @@ public class PropostaServiceClient : IPropostaServiceClient
         }
 
         var payload = await response.Content.ReadFromJsonAsync<PropostaResponse>();
-        if (payload == null)
+        if (payload == null || string.IsNullOrWhiteSpace(payload.Status))
         {
             throw new InvalidOperationException("Resposta invalida do PropostaService");
         }

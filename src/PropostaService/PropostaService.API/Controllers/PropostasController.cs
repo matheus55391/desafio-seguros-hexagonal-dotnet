@@ -92,11 +92,6 @@ public class PropostasController : ControllerBase
             var response = await _alterarStatusPropostaUseCase.ExecuteAsync(id, request);
             return Ok(response);
         }
-        catch (InvalidOperationException ex)
-        {
-            _logger.LogWarning(ex, "Operacao invalida ao alterar status da proposta {PropostaId}", id);
-            return BadRequest(new { message = ex.Message });
-        }
         catch (Exception ex)
         {
             _logger.LogError(ex, "Erro ao alterar status da proposta {PropostaId}", id);

@@ -35,11 +35,6 @@ public class ContratacoesController : ControllerBase
             var response = await _contratarPropostaUseCase.ExecuteAsync(request);
             return CreatedAtAction(nameof(ObterPorId), new { id = response.Id }, response);
         }
-        catch (InvalidOperationException ex)
-        {
-            _logger.LogWarning(ex, "Operacao invalida ao contratar proposta {PropostaId}", request.PropostaId);
-            return BadRequest(new { message = ex.Message });
-        }
         catch (Exception ex)
         {
             _logger.LogError(ex, "Erro ao contratar proposta {PropostaId}", request.PropostaId);
